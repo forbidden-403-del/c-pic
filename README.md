@@ -21,7 +21,7 @@ Cross‑platform C demo that compiles a small program into **position‑independ
   - [3. Explore the artifacts](#3-explore-the-artifacts)
 - [Supported Targets](#supported-targets)
 - [How It Works](#how-it-works)
-  - [Windows](#windows)W
+  - [Windows](#windows)
   - [Linux](#linux)
 - [Project Layout](#project-layout)
 - [Research & Ethics](#research--ethics)
