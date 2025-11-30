@@ -83,7 +83,7 @@ typedef struct _PEB {
 } PEB, *PPEB;
 
 // Function to get the current process's PEB pointer
-PPEB GetCurrentPEB();
+PPEB GetCurrentPEB(VOID);
 // Function to resolve module handle by its name
 PVOID GetModuleHandleFromPEB(PPEB peb, const PWCHAR moduleName);
 

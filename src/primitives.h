@@ -41,7 +41,7 @@ typedef double DOUBLE, * PDOUBLE;
     typedef UINT16 WCHAR, * PWCHAR, ** PPWCHAR;
     typedef INT32 BOOL, * PBOOL,** PPBOOL;
 #elif defined(PLATFORM_LINUX)
-    typedef INT32 WCHAR, * PWCHAR, ** PPWCHAR;
+    typedef UINT32 WCHAR, * PWCHAR, ** PPWCHAR;
     typedef UINT8 BOOL, * PBOOL,** PPBOOL;
 #else
     #error Unsupported platform

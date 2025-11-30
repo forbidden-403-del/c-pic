@@ -46,14 +46,13 @@ set "BIN=%OUTDIR%\%OUTNAME%.bin"
 set "DISASM=%OUTDIR%\%OUTNAME%.txt"
 
 rem ===== Compile =====
-clang -Qn -fuse-ld=lld ^
+clang -Wall -Wextra -Werror -Qn -fuse-ld=lld ^
     -target %TARGET% ^
     -nostdinc -nostartfiles -nodefaultlibs ^
     -nostdlib -fno-ident -mno-stack-arg-probe -fno-stack-check ^
     -ffunction-sections -fdata-sections ^
     -fno-asynchronous-unwind-tables ^
     -fno-unwind-tables ^
-    -fno-exceptions ^
     -Wl,--gc-sections ^
     -fno-builtin ^
     -Wl,-T,linker.script,-e,main ^

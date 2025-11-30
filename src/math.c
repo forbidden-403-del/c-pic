@@ -28,6 +28,8 @@
 
 #include "math.h"
 
+INT32 _fltused = 0;
+
 #define DIV_MOD_IMPL(size) \
 static UINT##size __udivmod##size(UINT##size a, UINT##size b, UINT##size* remainder) \
 { \

@@ -48,36 +48,6 @@ USIZE GetStringLength(const PCHAR str) {
     return s - str;
 }
 
- // Function to convert a string to an integer
-static INT32 String_atoi(PCHAR str){
-    INT32 num = 0;  // Initialize the number to 0, which will hold the converted integer value
-    INT32 sign = 1; // Initialize the sign to positive, WIll be adjusted if a negative sign is found
-
-    // Validate the input string
-    if(str == NULL) {
-        return 0; 
-    }
-    // Skip leading whitespace characters
-    while (*str == ' ') {
-        str++;
-    }
-    // Check for optional sign character
-    if (*str == '-') {
-        sign = -1; // If a negative sign is found, set the sign to -1
-        str++;     // Skip the sign character
-    } else if (*str == '+') { // Check for a positive sign
-        str++;     // Skip the positive sign character
-    }
-
-    // Convert string to integer
-    while (*str >= '0' && *str <= '9') {
-        num = num * 10 + (*str - '0'); // Multiply the current number by 10 and add the integer value of the current character
-        str++;                         // Move to the next character in the string  
-    }
-
-    return num * sign;                 // Return the final integer value, adjusting for sign
-}
-
 // Function to convert an integer to a string with specified formatting - using zero padding, width, and alignment
 VOID intToStr(INT64 num, PCHAR str, PINT32 index, INT32 width, INT32 zeroPad, INT32 leftAlign) {
     BOOL isNegative = FALSE; // Flag to check if the number is negative
@@ -161,18 +131,18 @@ VOID doubleToStr(DOUBLE num, PCHAR str, PINT32 index, INT32 precision, INT32 wid
     DOUBLE frac_part = num - int_part;
 
     // Convert the integer part to string
-    INT32 intDigits = 0; // Count the number of digits in the integer part
-    INT64 tempInt = int_part; // Temporary variable to count digits in the integer part
+    //INT32 intDigits = 0; // Count the number of digits in the integer part
+    //INT64 tempInt = int_part; // Temporary variable to count digits in the integer part
     
     // Calculate the number of digits in the integer part
-    if (tempInt == 0) {
-        intDigits = 1;
-    } else {
-        while (tempInt > 0) {
-            tempInt /= 10; // Remove the last digit
-            intDigits++; // Increment the digit count
-        }
-    }
+    // if (tempInt == 0) {
+    //     intDigits = 1;
+    // } else {
+    //     while (tempInt > 0) {
+    //         tempInt /= 10; // Remove the last digit
+    //         intDigits++; // Increment the digit count
+    //     }
+    // }
 
     // Convert the integer part to string
     CHAR intStr[20];  // Temporary storage for integer part
