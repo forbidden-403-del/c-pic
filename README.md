@@ -9,6 +9,8 @@ Cross‑platform C demo that compiles a small program into **position‑independ
 > ⚠️ This project is for **low‑level systems / compiler education and research only**.  
 > Do **not** use it to break laws, violate school rules, workplace policies, or service terms.
 
+[GitHub Project](https://github.com/mrzaxaryan/c-pic)
+
 ---
 
 ## Table of Contents
