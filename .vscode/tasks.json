@@ -1,0 +1,241 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "cmd",
+            "args": ["/c", "if exist bin rmdir /s /q bin"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": []
+        },
+
+        {
+            "label": "i386-pc-windows-msvc",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "compiler.bat",
+                "bin\\windows",
+                "i386-pc-windows-msvc",
+                "windows_i386",
+                "src\\*.c",
+                "-DARCHITECTURE_I386",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_I386",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "x86_64-pc-windows-msvc",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "compiler.bat",
+                "bin\\windows",
+                "x86_64-pc-windows-msvc",
+                "windows_amd64",
+                "src\\*.c",
+                "-DARCHITECTURE_AMD64",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_AMD64",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "armv7a-pc-windows-msvc",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "compiler.bat",
+                "bin\\windows",
+                "armv7a-pc-windows-msvc",
+                "windows_arm32",
+                "src\\*.c",
+                "-DARCHITECTURE_ARM32",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_ARM32",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "aarch64-pc-windows-msvc",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "compiler.bat",
+                "bin\\windows",
+                "aarch64-pc-windows-msvc",
+                "windows_arm64",
+                "src\\*.c",
+                "-DARCHITECTURE_ARM64",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_ARM64",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+
+        {
+            "label": "i386-unknown-linux-gnu-win",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\windows",
+                "i386-unknown-linux-gnu",
+                "windows_i386",
+                "src\\*.c",
+                "-DARCHITECTURE_I386",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_I386",
+                "-Os",
+                "-fshort-wchar"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "x86_64-unknown-linux-gnu-win",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\windows",
+                "x86_64-unknown-linux-gnu",
+                "windows_amd64",
+                "src\\*.c",
+                "-DARCHITECTURE_AMD64",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_AMD64",
+                "-Os",
+                "-fshort-wchar"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "thumbv7a-none-linux-gnueabi-win",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\windows",
+                "thumbv7a-none-linux-gnueabi",
+                "windows_arm32",
+                "src\\*.c",
+                "-DARCHITECTURE_ARM32",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_ARM32",
+                "-Os",
+                "-fshort-wchar"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "aarch64-unknown-linux-gnu-win",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\windows",
+                "aarch64-unknown-linux-gnu",
+                "windows_arm64",
+                "src\\*.c",
+                "-DARCHITECTURE_ARM64",
+                "-DPLATFORM_WINDOWS",
+                "-DPLATFORM_WINDOWS_ARM64",
+                "-Os",
+                "-fshort-wchar"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+
+        {
+            "label": "i386-unknown-linux-gnu",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\linux",
+                "i386-unknown-linux-gnu",
+                "linux_i386",
+                "src\\*.c",
+                "-DARCHITECTURE_I386",
+                "-DPLATFORM_LINUX",
+                "-DPLATFORM_LINUX_I386",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "x86_64-unknown-linux-gnu",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\linux",
+                "x86_64-unknown-linux-gnu",
+                "linux_amd64",
+                "src\\*.c",
+                "-DARCHITECTURE_AMD64",
+                "-DPLATFORM_LINUX",
+                "-DPLATFORM_LINUX_AMD64",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "aarch64-unknown-linux-gnu",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c", "pic-compiler.bat",
+                "bin\\linux",
+                "aarch64-unknown-linux-gnu",
+                "linux_arm64",
+                "src\\*.c",
+                "-DARCHITECTURE_ARM64",
+                "-DPLATFORM_LINUX",
+                "-DPLATFORM_LINUX_ARM64",
+                "-Os"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"]
+        },
+
+        {
+            "label": "Build All",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "clean",
+                "i386-pc-windows-msvc",
+                "x86_64-pc-windows-msvc",
+                "armv7a-pc-windows-msvc",
+                "aarch64-pc-windows-msvc",
+                "i386-unknown-linux-gnu-win",
+                "x86_64-unknown-linux-gnu-win",
+                "thumbv7a-none-linux-gnueabi-win",
+                "aarch64-unknown-linux-gnu-win",
+                "i386-unknown-linux-gnu",
+                "x86_64-unknown-linux-gnu",
+                "aarch64-unknown-linux-gnu"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

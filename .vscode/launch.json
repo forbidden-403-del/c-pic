@@ -1,0 +1,78 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Windows AMD64",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/windows/windows_amd64.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "preLaunchTask": "x86_64-pc-windows-msvc",
+        },
+        {
+            "name": "Windows i386",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/windows/windows_i386.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "preLaunchTask": "i386-pc-windows-msvc"
+        },
+        {
+            "name": "Windows ARM64",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/windows/windows_arm64.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "preLaunchTask": "aarch64-pc-windows-msvc"
+        },
+
+        {
+            "name": "Linux i386 (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_i386",
+            "cwd": "/mnt/c/path/to/your/repo",
+            "MIMode": "gdb",
+            "pipeTransport": {
+                "pipeProgram": "wsl",
+                "pipeArgs": [],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "preLaunchTask": "i386-unknown-linux-gnu"
+        },
+        {
+            "name": "Linux AMD64 (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_amd64",
+            "cwd": "/mnt/c/path/to/your/repo",
+            "MIMode": "gdb",
+            "pipeTransport": {
+                "pipeProgram": "wsl",
+                "pipeArgs": [],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "preLaunchTask": "x86_64-unknown-linux-gnu"
+        },
+        {
+            "name": "Linux ARM64 (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_arm64",
+            "cwd": "/mnt/c/path/to/your/repo",
+            "MIMode": "gdb",
+            "pipeTransport": {
+                "pipeProgram": "wsl",
+                "pipeArgs": [],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "preLaunchTask": "aarch64-unknown-linux-gnu"
+        }
+    ]
+}

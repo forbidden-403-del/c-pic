@@ -1,0 +1,191 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Windows AMD64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_AMD64",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_AMD64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Windows i386",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-x86",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_I386",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_I386"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Windows ARM32",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-arm",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_ARM32",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_ARM32"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Windows ARM64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-arm64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_ARM64",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_ARM64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+
+        //
+        // ------- WINDOWS PIC (cross targets that still define PLATFORM_WINDOWS_*) -------
+        // IntelliSense-wise these are identical to the classic ones, because preprocessor
+        // defines are the same – only the toolchain/flags differ at build time.
+        //
+        {
+            "name": "Win-PIC-i386",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-x86",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_I386",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_I386"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Win-PIC-AMD64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_AMD64",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_AMD64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Win-PIC-ARM32",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-arm",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_ARM32",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_ARM32"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Win-PIC-ARM64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-arm64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_ARM64",
+                "PLATFORM_WINDOWS",
+                "PLATFORM_WINDOWS_ARM64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+
+        //
+        // ------- LINUX PIC (WSL / ELF targets) -------
+        //
+        {
+            "name": "Linux-Clang-AMD64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe", // or WSL clang path
+            "intelliSenseMode": "linux-clang-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_AMD64",
+                "PLATFORM_LINUX",
+                "PLATFORM_LINUX_AMD64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Linux-Clang-i386",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "linux-clang-x86",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_I386",
+                "PLATFORM_LINUX",
+                "PLATFORM_LINUX_I386"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        },
+        {
+            "name": "Linux-Clang-ARM64",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
+            "intelliSenseMode": "linux-clang-arm64",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "defines": [
+                "ARCHITECTURE_ARM64",
+                "PLATFORM_LINUX",
+                "PLATFORM_LINUX_ARM64"
+            ],
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include"
+            ]
+        }
+    ]
+}
