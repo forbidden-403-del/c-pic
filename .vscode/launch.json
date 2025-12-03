@@ -3,50 +3,45 @@
     "configurations": [
         {
             "name": "Windows i386",
-            "type": "cppvsdbg",
+            "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_i386.exe",
+            "args": [],
             "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "stopAtEntry": false,
-            "preLaunchTask": "i386-pc-windows-msvc"
+            "preLaunchTask": "i386-pc-windows-gnu"
         },
         {
             "name": "Windows x86_64",
-            "type": "cppvsdbg",
+            "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_x86_64.exe",
             "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
-            "stopAtEntry": false,
-            "preLaunchTask": "x86_64-pc-windows-msvc",
+            "preLaunchTask": "x86_64-pc-windows-gnu",
         },
         {
             "name": "Windows ARM7A",
-            "type": "cppvsdbg",
+            "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_arm7a.exe",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
-            "stopAtEntry": false,
             "preLaunchTask": "armv7a-pc-windows-msvc"
         },
         {
             "name": "Windows AARCH64",
-            "type": "cppvsdbg",
+            "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_aarch64.exe",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
-            "stopAtEntry": false,
             "preLaunchTask": "aarch64-pc-windows-msvc"
         },
         {
             "name": "Linux i386 (WSL)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_i386",
-            "cwd": "/mnt/c/path/to/your/repo",
+            "program": "${workspaceFolder}/bin/linux/linux_i386",
+            "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "pipeTransport": {
                 "pipeProgram": "wsl",
@@ -59,8 +54,8 @@
             "name": "Linux x86_64 (WSL)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_x86_64",
-            "cwd": "/mnt/c/path/to/your/repo",
+            "program": "${workspaceFolder}/bin/linux/linux_x86_64",
+            "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "pipeTransport": {
                 "pipeProgram": "wsl",
@@ -73,8 +68,8 @@
             "name": "Linux AARCH64 (WSL)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/mnt/c/path/to/your/repo/bin/linux/linux_aarch64",
-            "cwd": "/mnt/c/path/to/your/repo",
+            "program": "${workspaceFolder}/bin/linux/linux_aarch64",
+            "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "pipeTransport": {
                 "pipeProgram": "wsl",

@@ -22,16 +22,7 @@
     {
       "label": "prepare:linux",
       "type": "shell",
-      "command": "cmd",
-      "args": [
-        "/c",
-        "if",
-        "not",
-        "exist",
-        "bin\\linux",
-        "mkdir",
-        "bin\\linux"
-      ],
+      "command": "mkdir -p bin/linux",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -46,6 +37,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -88,6 +80,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -130,6 +123,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -172,6 +166,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -208,12 +203,13 @@
     {
       "label": "i386-unknown-linux-gnu",
       "dependsOn": "prepare:linux",
-      "type": "process",
-      "command": "clang",
+      "type": "shell",
+      "command": "clang-21",
       "args": [
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -238,7 +234,7 @@
         "-DPLATFORM_LINUX",
         "-DPLATFORM_LINUX_I386",
         "-Os",
-        "src/*.c",
+        "src/*.c"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -256,6 +252,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -301,6 +298,7 @@
         "-Wall",
         "-Wextra",
         "-Werror",
+        "-g",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
