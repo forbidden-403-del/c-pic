@@ -33,7 +33,7 @@
             "program": "${workspaceFolder}/bin/windows/windows_aarch64.exe",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
-            "preLaunchTask": "aarch64-pc-windows-msvc"
+            "preLaunchTask": "aarch64-pc-windows-gnu"
         },
         {
             "name": "Linux i386 (WSL)",
