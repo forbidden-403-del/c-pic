@@ -27,9 +27,10 @@ typedef struct _LIST_ENTRY
 typedef struct _LDR_DATA_TABLE_ENTRY
 {
     LIST_ENTRY InLoadOrderLinks;
-    PVOID Reserved2[2];
+    LIST_ENTRY InMemoryOrderLinks;
+    LIST_ENTRY InInitializationOrderLinks;
     PVOID DllBase;
-    UNICODE_STRING FullDllName;
+    PVOID EntryPoint;
 } LDR_DATA_TABLE_ENTRY, *PLDR_DATA_TABLE_ENTRY;
 
 // Loader module structure

@@ -8,7 +8,8 @@
 #include "peb.h"
 #include "pe.h"
 
-#if defined(PLATFORM_PIC)
+#if defined(PLATFORM_WINDOWS_I386)
+
 // -----------------------------------------------------------------------------
 // Environment base management (used for PIC-style rebasing)
 // -----------------------------------------------------------------------------

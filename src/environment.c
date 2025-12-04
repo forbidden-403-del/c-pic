@@ -1,6 +1,6 @@
 #include "environment.h"
 
-#if defined(PLATFORM_PIC)
+#if defined(PLATFORM_WINDOWS_I386)
 
 PCHAR GetInstructionAddress(VOID)
 {
@@ -46,10 +46,34 @@ PCHAR ReversePatternSearch(PCHAR rip, const CHAR *pattern, UINT32 len)
 
 PVOID RebaseLiteral(PVOID p)
 {
-    USIZE pointer = (USIZE)p;
-    USIZE currentBaseAddress = (USIZE)GetEnvironmentBaseAddress();
+    // Get the PEB
+    PPEB peb = GetCurrentPEB();
 
-    return (PVOID)(pointer + currentBaseAddress - IMAGE_LINK_BASE);
+    // Go to loader data
+    PPEB_LDR_DATA ldr = peb->LoaderData;
+
+    // First module in InMemoryOrderModuleList is our EXE
+    PLIST_ENTRY list = &ldr->InMemoryOrderModuleList;
+    PLIST_ENTRY flink = list->Flink;
+
+    // Convert LIST_ENTRY to LDR_DATA_TABLE_ENTRY
+    PLDR_DATA_TABLE_ENTRY entry = CONTAINING_RECORD(flink, LDR_DATA_TABLE_ENTRY, InMemoryOrderLinks);
+
+    // Get the Entry point of EXE
+    USIZE EntryPoint = (USIZE)entry->EntryPoint;
+
+    // If it is _start function then our app is the EXE
+    if (EntryPoint == (USIZE)GetEnvironmentBaseAddress())
+    {
+        // Pointer is already relocated
+        return p;
+    }
+    // Otherwise we are running as a PIC blob
+    else
+    {
+        // and we should do the relocation ourselves
+        return (PVOID)((USIZE)p + GetEnvironmentBaseAddress() - IMAGE_LINK_BASE);
+    }
 }
 
 #endif // PLATFORM_WINDOWS_I386

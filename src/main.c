@@ -7,7 +7,8 @@
 
 ENTRYPOINT DOUBLE _start(VOID)
 {
-#if defined(PLATFORM_PIC)
+#if defined(PLATFORM_WINDOWS_I386)
+
 	PCHAR currentAddress = GetInstructionAddress(); // Get the return address of the caller function
 
 	UINT16 functionPrologue = 0x8955; // i386 function prologue: push ebp; mov ebp, esp
