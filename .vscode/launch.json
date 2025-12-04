@@ -6,15 +6,13 @@
             "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_i386.exe",
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "dump:windows:i386"
+            "preLaunchTask": "dump:windows:i386",
         },
         {
             "name": "Windows x86_64",
             "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_x86_64.exe",
-            "cwd": "${workspaceFolder}",
             "preLaunchTask": "dump:windows:x86_64"
         },
         {
@@ -22,8 +20,6 @@
             "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_arm7a.exe",
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
             "preLaunchTask": "dump:windows:arm7a"
         },
         {
@@ -31,8 +27,6 @@
             "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/bin/windows/windows_aarch64.exe",
-            "cwd": "${workspaceFolder}",
-            "console": "integratedTerminal",
             "preLaunchTask": "dump:windows:aarch64"
         },
         {

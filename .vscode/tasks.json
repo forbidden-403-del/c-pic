@@ -61,6 +61,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -80,14 +83,14 @@
         "-fno-ident",
         "-mno-stack-arg-probe",
         "-fno-stack-check",
-        "-flto",
+        // "-flto",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-asynchronous-unwind-tables",
-        //"-fno-omit-frame-pointer",
+        // "-fomit-frame-pointer",
         "-fno-unwind-tables",
         "-fno-builtin",
-        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/BASE:0x400000,/FILEALIGN:0x1000,/INCREMENTAL:NO",
+        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/BASE:0x400000,/FILEALIGN:0x1000,/INCREMENTAL:NO,/DEBUG",
         "-target",
         "i386-pc-windows-gnu",
         "-o",
@@ -100,10 +103,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "x86_64-pc-windows-gnu",
@@ -111,6 +111,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -121,6 +124,7 @@
         "-Wextra",
         "-Werror",
         "-g",
+        // "-fno-omit-frame-pointer",
         "-Qn",
         "-fuse-ld=lld",
         "-nostdinc",
@@ -130,13 +134,13 @@
         "-fno-ident",
         "-mno-stack-arg-probe",
         "-fno-stack-check",
-        "-flto",
+        // "-flto",
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-asynchronous-unwind-tables",
         "-fno-unwind-tables",
         "-fno-builtin",
-        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt",
+        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/DEBUG",
         "-target",
         "x86_64-pc-windows-gnu",
         "-o",
@@ -149,10 +153,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "armv7a-pc-windows-gnu",
@@ -161,6 +162,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -199,10 +203,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "aarch64-pc-windows-gnu",
@@ -210,6 +211,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -248,10 +252,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "i386-unknown-linux-gnu",
@@ -259,6 +260,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -297,10 +301,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "x86_64-unknown-linux-gnu",
@@ -308,6 +309,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -349,10 +353,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "aarch64-unknown-linux-gnu",
@@ -360,6 +361,9 @@
       "windows": {
         "type": "process",
         "command": "clang",
+        "problemMatcher": [
+          "$gcc"
+        ]
       },
       "linux": {
         "type": "shell",
@@ -398,10 +402,7 @@
       ],
       "options": {
         "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ]
+      }
     },
     {
       "label": "extract:windows:i386",
