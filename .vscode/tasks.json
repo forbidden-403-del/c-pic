@@ -84,6 +84,7 @@
         "-ffunction-sections",
         "-fdata-sections",
         "-fno-asynchronous-unwind-tables",
+        //"-fno-omit-frame-pointer",
         "-fno-unwind-tables",
         "-fno-builtin",
         "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/BASE:0x400000,/FILEALIGN:0x1000,/INCREMENTAL:NO",
@@ -143,7 +144,7 @@
         "-DARCHITECTURE_X86_64",
         "-DPLATFORM_WINDOWS",
         "-DPLATFORM_WINDOWS_X86_64",
-        "-O3",
+        "-O0",
         "src/*.c",
       ],
       "options": {
@@ -193,7 +194,7 @@
         "-DARCHITECTURE_ARM7A",
         "-DPLATFORM_WINDOWS",
         "-DPLATFORM_WINDOWS_ARM7A",
-        "-Os",
+        "-O0",
         "src/*.c",
       ],
       "options": {
@@ -242,7 +243,7 @@
         "-DARCHITECTURE_AARCH64",
         "-DPLATFORM_WINDOWS",
         "-DPLATFORM_WINDOWS_AARCH64",
-        "-Os",
+        "-O0",
         "src/*.c",
       ],
       "options": {
@@ -291,7 +292,7 @@
         "-DARCHITECTURE_I386",
         "-DPLATFORM_LINUX",
         "-DPLATFORM_LINUX_I386",
-        "-Os",
+        "-O0",
         "src/*.c"
       ],
       "options": {
@@ -343,7 +344,7 @@
         "-DARCHITECTURE_X86_64",
         "-DPLATFORM_LINUX",
         "-DPLATFORM_LINUX_X86_64",
-        "-Os",
+        "-O0",
         "src/*.c",
       ],
       "options": {
@@ -392,7 +393,7 @@
         "-DARCHITECTURE_AARCH64",
         "-DPLATFORM_LINUX",
         "-DPLATFORM_LINUX_AARCH64",
-        "-Os",
+        "-O0",
         "src/*.c",
       ],
       "options": {
@@ -405,11 +406,16 @@
     {
       "label": "extract:windows:i386",
       "dependsOn": "i386-pc-windows-gnu",
-      "type": "process",
-      "command": "llvm-objcopy",
+      "type": "shell",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "bash",
+      },
       "args": [
-        "--dump-section=.text=bin/windows/windows_i386.bin",
-        "bin/windows/windows_i386.exe"
+        "-c",
+        "llvm-objcopy --dump-section=.text=bin/windows/windows_i386.bin bin/windows/windows_i386.exe"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -420,7 +426,12 @@
       "label": "extract:windows:x86_64",
       "dependsOn": "x86_64-pc-windows-gnu",
       "type": "process",
-      "command": "llvm-objcopy",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "llvm-objcopy-20",
+      },
       "args": [
         "--dump-section=.text=bin/windows/windows_x86_64.bin",
         "bin/windows/windows_x86_64.exe"
@@ -434,7 +445,12 @@
       "label": "extract:windows:arm7a",
       "dependsOn": "armv7a-pc-windows-gnu",
       "type": "process",
-      "command": "llvm-objcopy",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "llvm-objcopy-20",
+      },
       "args": [
         "--dump-section=.text=bin/windows/windows_arm7a.bin",
         "bin/windows/windows_arm7a.exe"
@@ -448,7 +464,12 @@
       "label": "extract:windows:aarch64",
       "dependsOn": "aarch64-pc-windows-gnu",
       "type": "process",
-      "command": "llvm-objcopy",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "llvm-objcopy-20",
+      },
       "args": [
         "--dump-section=.text=bin/windows/windows_aarch64.bin",
         "bin/windows/windows_aarch64.exe"
@@ -461,11 +482,16 @@
     {
       "label": "extract:linux:i386",
       "dependsOn": "i386-unknown-linux-gnu",
-      "type": "process",
-      "command": "llvm-objcopy",
+      "type": "shell",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "bash",
+      },
       "args": [
-        "--dump-section=.text=bin/linux/linux_i386.bin",
-        "bin/linux/linux_i386.elf"
+        "-c",
+        "llvm-objcopy-20 --dump-section=.text=bin/linux/linux_i386.bin bin/linux/linux_i386.elf"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -476,7 +502,12 @@
       "label": "extract:linux:x86_64",
       "dependsOn": "x86_64-unknown-linux-gnu",
       "type": "process",
-      "command": "llvm-objcopy",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "llvm-objcopy-20",
+      },
       "args": [
         "--dump-section=.text=bin/linux/linux_x86_64.bin",
         "bin/linux/linux_x86_64.elf"
@@ -490,7 +521,12 @@
       "label": "extract:linux:aarch64",
       "dependsOn": "aarch64-unknown-linux-gnu",
       "type": "process",
-      "command": "llvm-objcopy",
+      "windows": {
+        "command": "llvm-objcopy",
+      },
+      "linux": {
+        "command": "llvm-objcopy-20",
+      },
       "args": [
         "--dump-section=.text=bin/linux/linux_aarch64.bin",
         "bin/linux/linux_aarch64.elf"
@@ -503,24 +539,47 @@
     {
       "label": "dump:windows:i386",
       "dependsOn": "extract:windows:i386",
-      "command": "cmd.exe",
-      "args": [
-        "/c",
-        "llvm-objdump",
-        "-d",
-        "-s",
-        "-j",
-        ".text",
-        "bin/windows/windows_i386.exe",
-        ">",
-        "bin/windows/windows_i386.txt",
-        "&&",
-        "llvm-objdump",
-        "-h",
-        "bin/windows/windows_i386.exe",
-        ">>",
-        "bin/windows/windows_i386.txt"
-      ],
+      "type": "process",
+      "windows": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "llvm-objdump",
+          "-d",
+          "-s",
+          "-j",
+          ".text",
+          "bin/windows/windows_i386.exe",
+          ">",
+          "bin/windows/windows_i386.txt",
+          "&&",
+          "llvm-objdump",
+          "-h",
+          "bin/windows/windows_i386.exe",
+          ">>",
+          "bin/windows/windows_i386.txt"
+        ]
+      },
+      "linux": {
+        "command": "/bin/bash",
+        "args": [
+          "-c",
+          "llvm-objdump",
+          "-d",
+          "-s",
+          "-j",
+          ".text",
+          "bin/windows/windows_i386.exe",
+          ">",
+          "bin/windows/windows_i386.txt",
+          "&&",
+          "llvm-objdump",
+          "-h",
+          "bin/windows/windows_i386.exe",
+          ">>",
+          "bin/windows/windows_i386.txt"
+        ]
+      },
       "options": {
         "cwd": "${workspaceFolder}"
       },

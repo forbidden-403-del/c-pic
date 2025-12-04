@@ -189,16 +189,17 @@ UINT64 __byteswap64(UINT64 a)
 	parts[1] = s1;
 	return a;
 }
-
+// ARCHITECTURE_I386 specific implementations
 UINT64 __udivdi3(UINT64 a, UINT64 b) { return __udiv64(a, b); }
 UINT64 __umoddi3(UINT64 a, UINT64 b) { return __umod64(a, b); }
 INT64 __divdi3(INT64 a, INT64 b) { return __sdiv64(a, b); }
 INT64 __moddi3(INT64 a, INT64 b) { return __smod64(a, b); }
 
+// ARCHITECTURE_ARM7A specific implementations
 UINT64 __rt_udiv64(UINT64 a, UINT64 b) { return __udiv64(a, b); }
-// UINT64 __rt_umod64(UINT64 a, UINT64 b) { return __umod64(a, b); }
-// INT64 __rt_sdiv64(INT64 a, INT64 b) { return __sdiv64(a, b); }
-// INT64 __rt_smod64(INT64 a, INT64 b) { return __smod64(a, b); }
+UINT64 __rt_umod64(UINT64 a, UINT64 b) { return __umod64(a, b); }
+INT64 __rt_sdiv64(INT64 a, INT64 b) { return __sdiv64(a, b); }
+INT64 __rt_smod64(INT64 a, INT64 b) { return __smod64(a, b); }
 
 INT64 __dtoi64(DOUBLE x) { return (INT64)x; }
 DOUBLE __i64tod(INT64 x) { return (DOUBLE)x; }
