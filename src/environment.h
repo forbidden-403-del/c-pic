@@ -15,8 +15,20 @@
 // -----------------------------------------------------------------------------
 #define IMAGE_LINK_BASE ((USIZE)0x401000)
 
-#define GetEnvironmentBaseAddress() (GetCurrentPEB()->SubSystemData)
-#define SetEnvironmentBaseAddress(v) (GetCurrentPEB()->SubSystemData = (PVOID)(v))
+typedef struct _ENVIRONMENT_DATA {
+    PVOID BaseAddress;
+    BOOL ShouldRelocate;
+} ENVIRONMENT_DATA, *PENVIRONMENT_DATA
+
+#define GetEnvironmentData() ((PENVIRONMENT_DATA)(GetCurrentPEB()->SubSystemData))
+#define GetEnvironmentBaseAddress() (GetEnvironmentData()->BaseAddress)
+#define SetEnvironmentBaseAddress(base, shouldRelocate) \
+    do { \
+        PENVIRONMENT_DATA EnvData = GetEnvironmentData(); \
+        EnvData->BaseAddress = (PVOID)(base); \
+        EnvData->ShouldRelocate = (shouldRelocate); \
+    } while (0)
+
 
 // These macros are only meaningful when GetEnvironmentBaseAddress() is valid.
 #define ENV_BASE ((USIZE)(GetEnvironmentBaseAddress()))
