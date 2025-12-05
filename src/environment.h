@@ -18,20 +18,13 @@
 typedef struct _ENVIRONMENT_DATA {
     PVOID BaseAddress;
     BOOL ShouldRelocate;
-} ENVIRONMENT_DATA, *PENVIRONMENT_DATA
+} ENVIRONMENT_DATA, *PENVIRONMENT_DATA;
+
+VOID InitEnvironmentData(PENVIRONMENT_DATA envData, PVOID baseAddress);
 
 #define GetEnvironmentData() ((PENVIRONMENT_DATA)(GetCurrentPEB()->SubSystemData))
-#define GetEnvironmentBaseAddress() (GetEnvironmentData()->BaseAddress)
-#define SetEnvironmentBaseAddress(base, shouldRelocate) \
-    do { \
-        PENVIRONMENT_DATA EnvData = GetEnvironmentData(); \
-        EnvData->BaseAddress = (PVOID)(base); \
-        EnvData->ShouldRelocate = (shouldRelocate); \
-    } while (0)
 
-
-// These macros are only meaningful when GetEnvironmentBaseAddress() is valid.
-#define ENV_BASE ((USIZE)(GetEnvironmentBaseAddress()))
+#define ENV_BASE ((USIZE)(GetEnvironmentData()->BaseAddress))
 #define ENV_DELTA (ENV_BASE - IMAGE_LINK_BASE)
 
 #define UTF8(literal) ((PCHAR)RebaseLiteral((PVOID)(literal)))

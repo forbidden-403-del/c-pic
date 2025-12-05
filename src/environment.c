@@ -7,6 +7,22 @@ PCHAR GetInstructionAddress(VOID)
     return __builtin_return_address(0);
 }
 
+VOID InitEnvironmentData(PENVIRONMENT_DATA envData, PVOID baseAddress)
+{
+    PPEB peb = GetCurrentPEB();
+	peb->SubSystemData = (PVOID)envData;
+
+	PPEB_LDR_DATA ldr = peb->LoaderData;
+	PLIST_ENTRY list = &ldr->InMemoryOrderModuleList;
+	PLIST_ENTRY flink = list->Flink;
+	PLDR_DATA_TABLE_ENTRY entry = CONTAINING_RECORD(flink, LDR_DATA_TABLE_ENTRY, InMemoryOrderLinks);
+	USIZE EntryPoint = (USIZE)entry->EntryPoint;
+
+	BOOL shouldRelocate = (EntryPoint != (USIZE)baseAddress);
+	envData->BaseAddress = baseAddress;
+	envData->ShouldRelocate = shouldRelocate;
+}
+
 PCHAR ReversePatternSearch(PCHAR rip, const CHAR *pattern, UINT32 len)
 {
     PCHAR p = rip;
