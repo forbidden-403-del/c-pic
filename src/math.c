@@ -18,14 +18,6 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#define LOW_PART 1
-#define HIGH_PART 0
-#else
-#define LOW_PART 0
-#define HIGH_PART 1
-#endif
-
 #include "math.h"
 
 INT32 _fltused = 0;
@@ -106,6 +98,7 @@ INT32 _fltused = 0;
 		if (b < 0)                                                                       \
 		{                                                                                \
 			b = -b;                                                                      \
+			negative = !negative;                                                        \
 		}                                                                                \
                                                                                          \
 		INT##size result = __umod##size(a, b);                                           \
@@ -114,81 +107,76 @@ INT32 _fltused = 0;
 		return result;                                                                   \
 	}
 
-// DIV_MOD_IMPL(8)
-// DIV_MOD_IMPL(16)
-// DIV_MOD_IMPL(32)
-DIV_MOD_IMPL(64)
+// UINT64 __shl64(UINT64 a, UINT8 count)
+// {
+// 	UINT32 *parts = (UINT32 *)&a;
+// 	count &= 63;
+// 	if (count >= 32)
+// 	{
+// 		parts[HIGH_PART] = parts[LOW_PART] << (count - 32);
+// 		parts[LOW_PART] = 0;
+// 	}
+// 	else
+// 	{
+// 		parts[HIGH_PART] = (parts[HIGH_PART] << count) | (parts[LOW_PART] >> (32 - count));
+// 		parts[LOW_PART] <<= count;
+// 	}
+// 	return a;
+// }
 
-UINT64 __shl64(UINT64 a, UINT8 count)
-{
-	UINT32 *parts = (UINT32 *)&a;
-	count &= 63;
-	if (count >= 32)
-	{
-		parts[HIGH_PART] = parts[LOW_PART] << (count - 32);
-		parts[LOW_PART] = 0;
-	}
-	else
-	{
-		parts[HIGH_PART] = (parts[HIGH_PART] << count) | (parts[LOW_PART] >> (32 - count));
-		parts[LOW_PART] <<= count;
-	}
-	return a;
-}
+// UINT64 __shr64(UINT64 a, UINT8 count)
+// {
+// 	UINT32 *parts = (UINT32 *)&a;
+// 	count &= 63;
+// 	if (count >= 32)
+// 	{
+// 		parts[LOW_PART] = parts[HIGH_PART] >> (count - 32);
+// 		parts[HIGH_PART] = 0;
+// 	}
+// 	else
+// 	{
+// 		parts[LOW_PART] = (parts[LOW_PART] >> count) | (parts[HIGH_PART] << (32 - count));
+// 		parts[HIGH_PART] >>= count;
+// 	}
+// 	return a;
+// }
 
-UINT64 __shr64(UINT64 a, UINT8 count)
-{
-	UINT32 *parts = (UINT32 *)&a;
-	count &= 63;
-	if (count >= 32)
-	{
-		parts[LOW_PART] = parts[HIGH_PART] >> (count - 32);
-		parts[HIGH_PART] = 0;
-	}
-	else
-	{
-		parts[LOW_PART] = (parts[LOW_PART] >> count) | (parts[HIGH_PART] << (32 - count));
-		parts[HIGH_PART] >>= count;
-	}
-	return a;
-}
+// INT64 __sar64(INT64 a, UINT8 count)
+// {
+// 	INT32 *parts = (INT32 *)&a;
+// 	count &= 63;
+// 	if (count >= 32)
+// 	{
+// 		parts[LOW_PART] = parts[HIGH_PART] >> (count - 32);
+// 		parts[HIGH_PART] >>= 31;
+// 	}
+// 	else
+// 	{
+// 		parts[LOW_PART] = (((UINT32)parts[LOW_PART]) >> count) | (((UINT32)parts[HIGH_PART]) << (32 - count));
+// 		parts[HIGH_PART] >>= count;
+// 	}
+// 	return a;
+// }
 
-INT64 __sar64(INT64 a, UINT8 count)
-{
-	INT32 *parts = (INT32 *)&a;
-	count &= 63;
-	if (count >= 32)
-	{
-		parts[LOW_PART] = parts[HIGH_PART] >> (count - 32);
-		parts[HIGH_PART] >>= 31;
-	}
-	else
-	{
-		parts[LOW_PART] = (((UINT32)parts[LOW_PART]) >> count) | (((UINT32)parts[HIGH_PART]) << (32 - count));
-		parts[HIGH_PART] >>= count;
-	}
-	return a;
-}
+// UINT16 __byteswap16(UINT16 a)
+// {
+// 	return (a >> 8) | (a << 8);
+// }
 
-UINT16 __byteswap16(UINT16 a)
-{
-	return (a >> 8) | (a << 8);
-}
+// UINT32 __byteswap32(UINT32 a)
+// {
+// 	return (a >> 24) | ((a >> 8) & 0xff00) | ((a << 8) & 0xff0000) | (a << 24);
+// }
 
-UINT32 __byteswap32(UINT32 a)
-{
-	return (a >> 24) | ((a >> 8) & 0xff00) | ((a << 8) & 0xff0000) | (a << 24);
-}
-
-UINT64 __byteswap64(UINT64 a)
-{
-	UINT32 *parts = (UINT32 *)&a;
-	UINT32 s0 = __byteswap32(parts[1]);
-	UINT32 s1 = __byteswap32(parts[0]);
-	parts[0] = s0;
-	parts[1] = s1;
-	return a;
-}
+// UINT64 __byteswap64(UINT64 a)
+// {
+// 	UINT32 *parts = (UINT32 *)&a;
+// 	UINT32 s0 = __byteswap32(parts[1]);
+// 	UINT32 s1 = __byteswap32(parts[0]);
+// 	parts[0] = s0;
+// 	parts[1] = s1;
+// 	return a;
+// }
 // ARCHITECTURE_I386 specific implementations
 UINT64 __udivdi3(UINT64 a, UINT64 b) { return __udiv64(a, b); }
 UINT64 __umoddi3(UINT64 a, UINT64 b) { return __umod64(a, b); }
@@ -220,3 +208,8 @@ DOUBLE __trunctfdf2(long double a)
 }
 
 INT64 _allrem(INT64 a, INT64 b) { return __smod64(a, b); }
+
+// DIV_MOD_IMPL(8)
+// DIV_MOD_IMPL(16)
+// DIV_MOD_IMPL(32)
+DIV_MOD_IMPL(64)

@@ -54,4 +54,7 @@ INT64 __rt_smod64(INT64 a, INT64 b);
 UINT64 __aeabi_uldivmod(UINT64 a, UINT64 b, UINT64 *rem);
 INT64 _allrem(INT64 a, INT64 b);
 
+INT64 __dtoi64(DOUBLE x);
+DOUBLE __i64tod(INT64 x);
+
 #endif
