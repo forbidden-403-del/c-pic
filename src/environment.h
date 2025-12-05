@@ -37,7 +37,6 @@ PCHAR GetInstructionAddress(VOID);
 PCHAR ReversePatternSearch(PCHAR rip, const CHAR *pattern, UINT32 len);
 
 PVOID RebaseLiteral(PVOID p);
-DOUBLE RebaseLiteralDouble(const DOUBLE *d);
 #else // !PIC
 #define UTF8(s) (s)
 #define UTF16(s) (s)
@@ -55,7 +54,11 @@ DOUBLE RebaseLiteralDouble(const DOUBLE *d);
 #elif defined(PLATFORM_LINUX)
 #define UTF8(s) (s)
 #define UTF16(s) (s)
+#if defined(PLATFORM_LINUX_X86_64)
+#define MAKE_DOUBLE(d) StringToDouble(#d)
+#else
 #define MAKE_DOUBLE(d) d
+#endif
 NO_RETURN VOID ExitProcess(USIZE code);
 
 #endif // PLATFORM_* checks

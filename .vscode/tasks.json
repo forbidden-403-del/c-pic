@@ -90,7 +90,7 @@
         // "-fomit-frame-pointer",
         "-fno-unwind-tables",
         "-fno-builtin",
-        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/BASE:0x400000,/FILEALIGN:0x1000,/INCREMENTAL:NO,/DEBUG",
+        "-Wl,/MERGE:.rdata=.text,/Entry:_start,/SUBSYSTEM:CONSOLE,/ORDER:@orderfile.txt,/BASE:0x400000,/FILEALIGN:0x1000,/DEBUG",
         "-target",
         "i386-pc-windows-gnu",
         "-o",

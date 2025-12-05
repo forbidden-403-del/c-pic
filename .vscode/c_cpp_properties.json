@@ -2,23 +2,7 @@
     "version": 4,
     "configurations": [
         {
-            "name": "Windows x86_64",
-            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "windows-clang-x64",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "defines": [
-                "ARCHITECTURE_X86_64",
-                "PLATFORM_WINDOWS",
-                "PLATFORM_WINDOWS_X86_64"
-            ],
-            "includePath": [
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/include"
-            ]
-        },
-        {
-            "name": "Windows i386",
+            "name": "i386-pc-windows-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
             "intelliSenseMode": "windows-clang-x86",
             "cStandard": "c17",
@@ -34,61 +18,7 @@
             ]
         },
         {
-            "name": "Windows ARM7A",
-            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "windows-clang-arm",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "defines": [
-                "ARCHITECTURE_ARM7A",
-                "PLATFORM_WINDOWS",
-                "PLATFORM_WINDOWS_ARM7A"
-            ],
-            "includePath": [
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/include"
-            ]
-        },
-        {
-            "name": "Windows AARCH64",
-            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "windows-clang-aarch64",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "defines": [
-                "ARCHITECTURE_AARCH64",
-                "PLATFORM_WINDOWS",
-                "PLATFORM_WINDOWS_AARCH64"
-            ],
-            "includePath": [
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/include"
-            ]
-        },
-
-        //
-        // ------- WINDOWS PIC (cross targets that still define PLATFORM_WINDOWS_*) -------
-        // IntelliSense-wise these are identical to the classic ones, because preprocessor
-        // defines are the same – only the toolchain/flags differ at build time.
-        //
-        {
-            "name": "Win-PIC-i386",
-            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "windows-clang-x86",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "defines": [
-                "ARCHITECTURE_I386",
-                "PLATFORM_WINDOWS",
-                "PLATFORM_WINDOWS_I386"
-            ],
-            "includePath": [
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/include"
-            ]
-        },
-        {
-            "name": "Win-PIC-x86_64",
+            "name": "x86_64-pc-windows-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
             "intelliSenseMode": "windows-clang-x64",
             "cStandard": "c17",
@@ -104,7 +34,7 @@
             ]
         },
         {
-            "name": "Win-PIC-ARM7A",
+            "name": "arm7a-pc-windows-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
             "intelliSenseMode": "windows-clang-arm",
             "cStandard": "c17",
@@ -120,9 +50,9 @@
             ]
         },
         {
-            "name": "Win-PIC-AARCH64",
+            "name": "aarch64-pc-windows-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "windows-clang-aarch64",
+            "intelliSenseMode": "windows-clang-arm64",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "defines": [
@@ -135,13 +65,9 @@
                 "${workspaceFolder}/include"
             ]
         },
-
-        //
-        // ------- LINUX PIC (WSL / ELF targets) -------
-        //
         {
-            "name": "Linux-Clang-x86_64",
-            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe", // or WSL clang path
+            "name": "x86_64-pc-linux-gnu",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
             "intelliSenseMode": "linux-clang-x64",
             "cStandard": "c17",
             "cppStandard": "c++17",
@@ -156,7 +82,7 @@
             ]
         },
         {
-            "name": "Linux-Clang-i386",
+            "name": "i386-pc-linux-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
             "intelliSenseMode": "linux-clang-x86",
             "cStandard": "c17",
@@ -172,9 +98,9 @@
             ]
         },
         {
-            "name": "Linux-Clang-AARCH64",
+            "name": "aarch64-pc-linux-gnu",
             "compilerPath": "C:/Program Files/LLVM/bin/clang.exe",
-            "intelliSenseMode": "linux-clang-aarch64",
+            "intelliSenseMode": "linux-clang-arm64",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "defines": [

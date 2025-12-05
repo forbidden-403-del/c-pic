@@ -1,7 +1,7 @@
 #include "environment.h"
 #include "console.h"
 
-ENTRYPOINT DOUBLE _start(VOID)
+ENTRYPOINT INT32 _start(VOID)
 {
 #if defined(PLATFORM_WINDOWS_I386)
 	ENVIRONMENT_DATA envData;
